@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Organizely</string>
+
+    //entry page
+    <string name="google">Continue with Google</string>
+    <string name="facebook">Continue with Facebook</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    //accessibility
+    <string name="google_desc">Google logo</string>
+    <string name="facebook_desc">Facebook logo</string>
+    <string name="email_desc">Email logo</string>
+</resources>
