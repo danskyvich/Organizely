@@ -1,14 +1,10 @@
-package com.organizely.app
+package com.organizely.app.view
 
-import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,19 +21,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.organizely.app.ui.theme.OrganizelyTheme
+import com.organizely.app.R
 
 class AuthEmailVefPage : ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent() {
-            OrganizelyTheme {
-                PageContent()
-            }
-        }
-    }
 
     @Preview(showSystemUi = true, showBackground = true)
     @Composable
@@ -60,7 +46,9 @@ class AuthEmailVefPage : ComponentActivity() {
                 Column() {
                     Text("YOU ARE ONE STEP AWAY", fontSize = 13.sp, color = colorResource(R.color.white))
                     Text("Verify your Email", fontSize = 45.sp, color = colorResource(R.color.white))
-                    Text("In order to verify the authenticity of your account, please verify the email that you had chosen.", fontSize = 19.sp, color = colorResource(R.color.white))
+                    Text("In order to verify the authenticity of your account, please verify the email that you had chosen.", fontSize = 19.sp, color = colorResource(
+                        R.color.white
+                    ))
                 }
 
                 Row(Modifier.fillMaxWidth().weight(1f)) {}

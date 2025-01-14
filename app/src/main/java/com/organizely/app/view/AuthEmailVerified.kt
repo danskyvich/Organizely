@@ -1,9 +1,6 @@
-package com.organizely.app
+package com.organizely.app.view
 
-import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -24,19 +21,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.organizely.app.ui.theme.OrganizelyTheme
+import com.organizely.app.R
 
 class AuthEmailVerified : ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent() {
-            OrganizelyTheme {
-
-            }
-        }
-    }
 
     @Preview(showBackground = true, showSystemUi = true)
     @Composable

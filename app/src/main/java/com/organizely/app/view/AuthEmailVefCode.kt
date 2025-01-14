@@ -1,9 +1,6 @@
-package com.organizely.app
+package com.organizely.app.view
 
-import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,9 +15,12 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,23 +28,17 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.organizely.app.ui.theme.OrganizelyTheme
+import com.organizely.app.R
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class AuthEmailVefCode : ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent() {
-            OrganizelyTheme {
-                PageContent()
-            }
-        }
-    }
 
     @Preview(showBackground = true, showSystemUi = true)
     @Composable
     fun PageContent() {
+        var timer by rememberSaveable { mutableIntStateOf(0)}
+
         Row(
             Modifier
                 .background(colorResource(R.color.auth_bg))
@@ -57,19 +51,31 @@ class AuthEmailVefCode : ComponentActivity() {
                 Row(Modifier.fillMaxWidth().weight(1f)) {}
 
                 Column(Modifier.fillMaxWidth()) {
-                    Text("The verification email has been sent", fontSize = 35.sp, color = colorResource(R.color.white))
+                    Text("The verification email has been sent", fontSize = 35.sp, color = colorResource(
+                        R.color.white
+                    ))
                     Spacer(Modifier.height(5.dp))
-                    Text("Please input the verification code below.", fontSize = 19.sp, color = colorResource(R.color.white))
+                    Text("Please input the verification code below.", fontSize = 19.sp, color = colorResource(
+                        R.color.white
+                    ))
                     Spacer(Modifier.height(10.dp))
                     CodeField(isEmpty = false)
                 }
 
                 Column(Modifier.fillMaxWidth()) {
-                    Text("00", fontSize = 15.sp, color = colorResource(R.color.white),
+                    Text("$timer", fontSize = 15.sp, color = colorResource(R.color.white),
                         modifier = Modifier.align(Alignment.CenterHorizontally))
                     Spacer(Modifier.height(7.dp))
                     Text("Resend code", fontSize = 15.sp, color = colorResource(R.color.white),
                         modifier = Modifier.align(Alignment.CenterHorizontally))
+                }
+                LaunchedEffect(Unit) {
+                    launch {
+                        while(true) {
+                            delay(1_000)
+                            timer++
+                        }
+                    }
                 }
 
                 Row(Modifier.fillMaxWidth().weight(1f)) {}

@@ -8,6 +8,10 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
 
+    //authentication
+    <string name="sign_up">Sign Up</string>
+    <string name="retype_password">Retype password</string>
+
     //accessibility
     <string name="google_desc">Google logo</string>
     <string name="facebook_desc">Facebook logo</string>

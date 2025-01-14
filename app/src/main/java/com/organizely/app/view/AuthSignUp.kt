@@ -1,14 +1,10 @@
-package com.organizely.app
+package com.organizely.app.view
 
-import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,33 +12,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.organizely.app.ui.theme.OrganizelyTheme
+import com.organizely.app.R
 
 class AuthSignUp : ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            OrganizelyTheme {
-                PagePreview()
-            }
-        }
-    }
 
     @Preview(showSystemUi = true, showBackground = true)
     @Composable
@@ -90,47 +78,89 @@ class AuthSignUp : ComponentActivity() {
 
         Column (
         ) {
-            Text("Email", fontSize = 17.sp, color = colorResource(R.color.white))
+            Text(stringResource(R.string.email), fontSize = 17.sp, color = colorResource(R.color.white))
             Spacing(13)
-            TextField(
-                value = text,
-                onValueChange = { text = it },
-                label = { Text("") },
-                shape = RoundedCornerShape(12.dp),
-                supportingText = {
-                    if (isEmpty) {
-                        Text("Empty fields")
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-            Text("Password", fontSize = 17.sp, color = colorResource(R.color.white))
+            EmailField(isEmpty = false)
+            Text(stringResource(R.string.password), fontSize = 17.sp, color = colorResource(R.color.white))
             Spacing(13)
-            TextField(
-                value = text,
-                onValueChange = { text = it },
-                label = { Text("") },
-                shape = RoundedCornerShape(12.dp),
-                supportingText = {
-                    if (isEmpty) { Text("Empty fields") }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
+            PasswordField(isEmpty = false)
             Text("Retype password", fontSize = 17.sp, color = colorResource(R.color.white))
             Spacing(13)
-            TextField(
-                value = text,
-                onValueChange = { text = it },
-                label = { Text("") },
-                shape = RoundedCornerShape(12.dp),
-                supportingText = { if (isEmpty) {
-                        Text("Empty fields") }
-                },
-                modifier = Modifier.fillMaxWidth()
-            )
+            RetypeField(isEmpty = false)
         }
+    }
+
+    @Composable
+    fun EmailField(isEmpty: Boolean) {
+        var text by remember { mutableStateOf("")}
+
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("") },
+            shape = RoundedCornerShape(12.dp),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = Color.White,
+                unfocusedBorderColor = Color.White,
+                focusedTextColor = Color.White,
+                focusedBorderColor = Color.White
+            ),
+            supportingText = {
+                if (isEmpty) {
+                    Text("Empty fields")
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+    }
+
+    @Composable
+    fun PasswordField(isEmpty: Boolean) {
+        var text by remember { mutableStateOf("")}
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("") },
+            shape = RoundedCornerShape(12.dp),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = Color.White,
+                unfocusedBorderColor = Color.White,
+                focusedTextColor = Color.White,
+                focusedBorderColor = Color.White
+            ),
+            supportingText = {
+                if (isEmpty) {
+                    Text("Empty fields")
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+    }
+
+    @Composable
+    fun RetypeField(isEmpty: Boolean) {
+        var text by remember {mutableStateOf("")}
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("") },
+            shape = RoundedCornerShape(12.dp),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = Color.White,
+                unfocusedBorderColor = Color.White,
+                focusedTextColor = Color.White,
+                focusedBorderColor = Color.White
+            ),
+            supportingText = {
+                if (isEmpty) {
+                    Text("Empty fields")
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+        )
     }
 
     @Composable
